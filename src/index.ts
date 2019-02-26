@@ -4,6 +4,18 @@ import { getOriginalPosition } from './sourcemap'
 const isString = s => typeof s === 'string'
 const isNumber = n => typeof n === 'number'
 const isBoolean = b => typeof b === 'boolean'
+const isArray = a => Array.isArray(a)
+const isObject = o => Object.prototype.toString.call(o) === '[object Object]'
+const isJSON = o => {
+  let s: string
+  if (!(isArray(o) || isObject(o))) return false
+  try {
+    return isString(JSON.stringify(o))
+  } catch (e) {
+    return false
+  }
+}
+// const isFunction = f => typeof f === 'function'
 const pad = (s, n = 2) => (s + '').padStart(n, '0')
 
 interface IOptions {
@@ -159,11 +171,12 @@ export default class Console {
         const color: string = this.mapping[type][0]
         rest = rest.map(s => {
           if (isString(s)) return chalk[color](s)
-          if (isNumber(s)) return chalk.yellow(s + '')
+          if (isNumber(s)) return chalk.blueBright(s + '')
           if (isBoolean(s)) return chalk.blueBright(s + '')
           if (s == null) return chalk.gray(s + '')
           if (s.stack) return chalk.red(s.stack + '\n')
-          return s
+          if (isJSON(s)) return chalk.blueBright(JSON.stringify(s, null, 2) + ' ')
+          return s.toString()
         })
 
         const prefix = chalk[color](`[${type[0].toUpperCase()}] `)
