@@ -1,6 +1,6 @@
 {
   "name": "omg-console",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "a better console.log",
   "homepage": "https://github.com/aligay/omy-console",
   "bugs": "https://github.com/aligay/omy-console/issues",
@@ -16,6 +16,7 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
     "npm-updater": "^3.0.3",
     "source-map": "^0.7.3",
     "source-map-resolve": "^0.5.2",
