@@ -7,11 +7,10 @@ console.info(2, 'it\'s console.info')
 console.warn(3, 'it\'s console.warn')
 
 console.log(4, Promise)
-console.log(5, null)
-console.log(6, undefined)
-console.log(7, Infinity)
-console.log(8, { a: 1, b: Promise })
-console.log(9, { a: 1, b: [3, 4] })
+console.log(5, null, undefined)
+console.log(6, Infinity)
+console.log(7, { b: Promise })
+console.log(8, { a: 1, b: [2, 3] })
 try {
   throw new Error('aaaaaa')
 } catch (e) {

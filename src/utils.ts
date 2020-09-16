@@ -25,12 +25,12 @@ export const isJSON = obj => {
   const checkValue = (o) => {
     for (let i in o) {
       if (!o.hasOwnProperty(i)) continue
-      if (isString(o[i]) || isNumber(o[i]) || o[i] == null) {
+      const val = o[i]
+      if (isString(val) || isNumber(val) || val == null) {
         continue
       }
-      if (isObject(o[i]) || isArray(o[i])) {
-        console.log(o[i])
-        checkValue(o[i])
+      if (isObject(val) || isArray(val)) {
+        checkValue(val)
         continue
       }
       return false
@@ -38,13 +38,6 @@ export const isJSON = obj => {
     return true
   }
   return checkValue(obj)
-  // let s: string
-  // if (!(isArray(o) || isObject(o))) return false
-  // try {
-  //   return isString(JSON.stringify(o))
-  // } catch (e) {
-  //   return false
-  // }
 }
 
 const isFunction = f => typeof f === 'function'

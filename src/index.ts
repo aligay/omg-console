@@ -170,7 +170,8 @@ export default class Console {
           if (s == null) return chalk.gray(s + '')
           if (s.stack) return chalk.red(s.stack + '\n')
           if (isJSON(s)) return chalk.blueBright(JSON.stringify(s, null, 2) + ' ')
-          if (isObject(s)) return chalk.yellow(`<JS{${Object.keys(s)}}>`) + JSON.stringify(s, null, 2)
+          if (isObject(s)) return chalk.yellow(`<JS{${Object.keys(s).join(', ')}}>`) + JSON.stringify(s, null, 2)
+
           return s.toString()
         })
 
