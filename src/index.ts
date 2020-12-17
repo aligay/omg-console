@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import * as path from 'path'
 import { getOriginalPosition } from './sourcemap'
+import * as serialize from 'serialize-javascript'
 import { isString, isNumber, isBoolean, isObject, isJSON, getNow } from './utils'
 interface IOptions {
   name?: string,
@@ -170,7 +171,8 @@ export default class Console {
           if (s == null) return chalk.gray(s + '')
           if (s.stack) return chalk.red(s.stack + '\n')
           if (isJSON(s)) return chalk.blueBright(JSON.stringify(s, null, 2) + ' ')
-          if (isObject(s)) return chalk.yellow(`<JS{${Object.keys(s).join(', ')}}>`) + JSON.stringify(s, null, 2)
+          // if (isObject(s)) return chalk.yellow(`<JS{${Object.keys(s).join(', ')}}>`) + JSON.stringify(s, null, 2)
+          if (isObject(s)) return chalk.blueBright(serialize(s))
 
           return s.toString()
         })

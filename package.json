@@ -43,6 +43,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "npm-updater": "^3.0.3",
+    "serialize-javascript": "^5.0.1",
     "source-map": "^0.7.3",
     "source-map-resolve": "^0.5.2",
     "tslib": "1.x.x"
